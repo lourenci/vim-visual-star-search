@@ -10,11 +10,3 @@ endfunction
 
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
-
-" recursively vimgrep for word under cursor or selection if you hit leader-star
-if maparg('<leader>*', 'n') == ''
-  nmap <leader>* :execute 'noautocmd vimgrep /\V' . substitute(escape(expand("<cword>"), '\'), '\n', '\\n', 'g') . '/ `git ls-files`'<CR>
-endif
-if maparg('<leader>*', 'v') == ''
-  vmap <leader>* :<C-u>call <SID>VSetSearch('/')<CR>:execute 'noautocmd vimgrep /' . @/ . '/ `git ls-files`'<CR>
-endif
